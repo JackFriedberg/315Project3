@@ -14,5 +14,5 @@
         "sentiment": "^5.0.1",
         "twit": "^2.2.11"
     }
-    "engines":{"node": "8.0.0"}, 
+    "engines":{"node": "8.0.0"}
 }
