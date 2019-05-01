@@ -1,0 +1,77 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .mid-content {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container-fluid {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .scrollable {
+  height: 500px;
+  overflow-y: scroll;
+}
+ .stars{
+  displaY:inline-block;
+  position:relative;
+}
+.stars span{
+  color:#999;
+  displaY:inline-block;
+  vertical-align:middle;
+  float:right;
+  cursor:pointer;
+}
+.stars>span:hover:after{
+  position:absolute;
+  content: attr(title);
+  left:100%;
+}
+
+.stars>span:nth-child(1):hover,
+.stars>span:nth-child(1):hover ~ span{color: red;}
+.stars>span:nth-child(2):hover,
+.stars>span:nth-child(2):hover ~ span{color: #f73;}
+.stars>span:nth-child(3):hover,
+.stars>span:nth-child(3):hover ~ span{color: #fa2;}
+.stars>span:nth-child(4):hover,
+.stars>span:nth-child(4):hover ~ span{color: #eb2;}
+.stars>span:nth-child(5):hover,
+.stars>span:nth-child(5):hover ~ span{color: #d92;}
+  .jumbotron {
+    margin: 0px;
+    padding: 0;
+    text-align: center;
+    background-color:white;
+  }
+  
+  .row{
+    margin:0;
+    padding: 0;
+  }
+  
+  
+  .info-container{
+    margin:0;
+    padding: 0;
+    background-color:gray;
+	
+  }
+  
+  .map-container {
+    margin:0;
+    padding: 0;
+  }
+
+  #map {
+    height:100%;
+  }
