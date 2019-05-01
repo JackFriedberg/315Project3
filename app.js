@@ -9,7 +9,6 @@ const yelpClient =  yelp.client(yelpAPI);
 const Twit = require('twit');
 const dotenv = require('dotenv');
 const Sentiment = require('sentiment');
-
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
