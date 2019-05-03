@@ -12,6 +12,7 @@
 	 <meta charset="UTF-8">
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
+  
   <body onload = "refreshYelp()">
 
     <div class="container-fluid">
@@ -35,8 +36,8 @@
         <!-- Container for the sidebar-->
 		
         <div class="col-sm-3 info-container">
-		<div class="scrollable">
-			<div class='setHeight'>
+		<div id="scr0" class="scrollable">
+		<div class="setHeight">
           <div>
             <h1 id="content-to-change">Restaurant Reviews</h1>
             <p id="from-server"></p>
@@ -53,16 +54,16 @@
 				</div>				
 					<div id=TWAD  class="tabcontent"> <h3> Social Media: </h3> </div>
 					<p id="tweets"></p>
-				</div>
 		</div>
-          <div class="scrollable">
-		  <div class='setHeight'>
+		</div>
+          <div id="scr1" class="scrollable">
+		  <div class="setHeight">
 		  <div id="tableContent">	
 				<table id="myTable">
 				<thead>
 					<tr>
 					<th>Location</th>
-					<th>Sentiment Analysis</th>
+					<th>Rating</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -70,13 +71,13 @@
 				</tbody>
 				</table>
 				</div>
-           
+           </div>
           </div>
-		</div>
+        
 		</div>
 		</div>
       </div>   
-    </div>
+   
       
 	
 	<script sync src="https://platform.twitter.com/widgets.js"></script>
