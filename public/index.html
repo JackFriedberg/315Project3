@@ -576,33 +576,44 @@
 		}
         console.log("Tweet 1: " + tweetArray[0]);
         console.log("Score: " + starRating);
-		if(starRating != null)
-		{
-			//console.log(busName);
-			var table = document.getElementById("myTable");
+		var table = document.getElementById("myTable");
 			var createElm = document.createElement("tr");
 			var name = busName;
 			createElm.className = document.getElementById("content-to-change").innerHTML + count;
 			var createTD = document.createElement("td");
 			createTD.innerHTML = document.getElementById("content-to-change").innerHTML;
 			var createTD1 = document.createElement("td");
+			if(starRating != null)
+		{
 			var createDiv = document.createElement("div");
 			createDiv.className = "stars-outer";
 			var createDiv1 = document.createElement("div");
 			createDiv1.className = "stars-inner";
 			createDiv1.id = "temp";
+		}
+			else
+			{
+				var createDiv = document.createElement("div");
+				createDiv.className = "NoStarRating";
+				createDiv.innerHTML = "NoStarRating";
+			}
 			createTD1.appendChild(createDiv);
+			if(starRating!=null)
+			{
 			createDiv.appendChild(createDiv1);
+			}
 			createElm.appendChild(createTD);
 			createElm.appendChild(createTD1);
 			table.appendChild(createElm);
+			if(starRating!=null)
+			{
 			var value = starRating;
 			var convertToV = (value/5)* 100;
 			var valueStr = convertToV.toString(10);
 			var valueStrPercent = valueStr + "%";
 			createDiv1.style.width = valueStrPercent;
+			}
 			count++;
-		}
 		
         
       });
