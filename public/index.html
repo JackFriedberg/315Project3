@@ -9,6 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+	 <meta charset="UTF-8">
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
   <body onload = "refreshYelp()">
 
@@ -36,27 +38,36 @@
 		<div class="scrollable">
           <div>
             <h1 id="content-to-change">Restaurant Reviews</h1>
-            <p id="from-server">Feedback</p>
+            <p id="from-server"></p>
             <a id="link" target="_blank" href=""></a>
           </div>
-		  <div id="yelpPlace"></div>
-		
+		  
+				<div class="tab">
+				<button class="tablinks" onclick="openCity(event, 'yelpPlace')">YelpReviews</button>
+				<button class="tablinks" onclick="openCity(event, 'TWAD')">Twitter</button>
+				</div>
 
-<div class="stars">
-  <span title="WOW">&#9733;</span>
-  <span title="LOL">&#9733;</span>
-  <span title="Yey">&#9733;</span>
-  <span title="Hmm">&#9733;</span>
-  <span title="Boo">&#9733;</span>
-</div>
-		
+				<div id="yelpPlace" class="tabcontent"> <h3> YelpReviews: </h3>
+				
+				</div>				
+					<div id=TWAD  class="tabcontent"> <h3> Social Media: </h3> </div>
+					<p id="tweets"></p>
 		</div>
-		
           <div class="scrollable">
-            <h3> Social Media: </h3>
-			<div id=TWAD></div>
-            <p id="tweets"></p>
-            <p id="sentimentScore"></p>
+		  <div id="tableContent">	
+				<table id="myTable">
+				<thead>
+					<tr>
+					<th>Location</th>
+					<th>Rating</th>
+					</tr>
+				</thead>
+				<tbody>
+				<!-- 3 more rows here --> 
+				</tbody>
+				</table>
+				</div>
+           
           </div>
         
 		</div>
@@ -508,9 +519,9 @@
 		removeYelp();
 		var i;
 		for (i = 0; i < reviews.length; i++) { 
-        document.getElementById("from-server").innerHTML = reviews[i].text;
-        document.getElementById("link").innerHTML = "Click to see whole review";
-        document.getElementById("link").setAttribute("href", reviews[i].url);
+        //document.getElementById("from-server").innerHTML = reviews[i].text;
+        //document.getElementById("link").innerHTML = "Click to see whole review";
+        //document.getElementById("link").setAttribute("href", reviews[i].url);
 		var x = document.createElement("SPAN");
 		var y = document.createAttribute("data-review-id");
 		y.value = reviews[i].id;
@@ -526,6 +537,10 @@
 		js_script.src ="https://www.yelp.com/embed/widgets.js";
 		js_script.async = true;
 		x.appendChild(js_script);
+		
+		
+		
+		
         }
       });
 		
@@ -533,12 +548,16 @@
 			var myNode = document.getElementById("TWAD");
 			myNode.innerHTML = '';
 		}
+		function roundHalf(num) {
+			return Math.round(num*2)/2;
+		}
+		var count = 0;
       socket.on('showTweets', function(twitterInfo){
         
         tweetArray = twitterInfo.tweets;
         starRating = twitterInfo.rating;
 
-        //display the business name
+        
         myFunct();
 		var i;
 		for (i = 0; i < tweetArray.length; i++) { 
@@ -553,12 +572,52 @@
 		}
         console.log("Tweet 1: " + tweetArray[0]);
         console.log("Score: " + starRating);
+		if(starRating != null)
+		{
+			//console.log(busName);
+			var table = document.getElementById("myTable");
+			var createElm = document.createElement("tr");
+			var name = busName;
+			createElm.className = document.getElementById("content-to-change").innerHTML + count;
+			var createTD = document.createElement("td");
+			createTD.innerHTML = document.getElementById("content-to-change").innerHTML;
+			var createTD1 = document.createElement("td");
+			var createDiv = document.createElement("div");
+			createDiv.className = "stars-outer";
+			var createDiv1 = document.createElement("div");
+			createDiv1.className = "stars-inner";
+			createDiv1.id = "temp";
+			createTD1.appendChild(createDiv);
+			createDiv.appendChild(createDiv1);
+			createElm.appendChild(createTD);
+			createElm.appendChild(createTD1);
+			table.appendChild(createElm);
+			var value = starRating;
+			var convertToV = (value/5)* 100;
+			var valueStr = convertToV.toString(10);
+			var valueStrPercent = valueStr + "%";
+			createDiv1.style.width = valueStrPercent;
+			count++;
+		}
+		
         
       });
-	
+	function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
       
 
-
+	  //display the business name
       //executes when a business is clicked
       function displayReviews(currMarker){
         //get name and ID of business from the marker clicked
