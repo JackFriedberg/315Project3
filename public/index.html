@@ -521,6 +521,9 @@
 
       //this function finds the center to look around and the range it needs to look at and sends it to the backend
       function refreshYelp(){
+	      
+	controlSpinner.style.display = 'block';
+	deleteMarkers();
 
         topLongitude = Math.abs(map.getBounds().getNorthEast().lng());
         leftLatitude = Math.abs(map.getBounds().getSouthWest().lat());
@@ -550,7 +553,7 @@
       //executes when it receives the new markers for businesses
       socket.on('updatedInfo', function(businesses){
       
-        deleteMarkers();
+        controlSpinner.style.display = 'none';
        
         for (var i = 0; i < businesses.length; i++) {
           thisBus = businesses[i];
