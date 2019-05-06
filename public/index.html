@@ -102,6 +102,61 @@
       //element of spinner for search
       var controlSpinner;
 
+	    
+	    
+	    
+	//defines the search control element
+      function SearchControl(controlDiv, map) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginTop = '5px'
+        controlDiv.appendChild(controlUI);
+
+        var controlSearch = document.createElement('input');
+        controlSearch.type = 'search';
+        controlSearch.placeholder = 'Search (Ex.: "Tacos")';
+        controlSearch.style.padding= '6px';
+        controlSearch.style.fontSize = '17px';
+        controlSearch.style.border = 'none';
+        controlSearch.style.width = '200px';
+        controlSearch.style.outline = 'none';
+        controlUI.appendChild(controlSearch);
+
+        var controlButton = document.createElement('button');
+        controlButton.innerHTML = '<i class="fa fa-search"></i>'
+        controlButton.style.padding = '6px 10px';
+        controlButton.style.marginRight = '0px';
+        controlButton.style.background = '#ddd';
+        controlButton.style.fontSize = '17px';
+        controlButton.style.border = 'none';
+        controlButton.style.cursor = 'pointer';
+        controlUI.appendChild(controlButton);
+
+        controlSpinner = document.createElement('div');
+        controlSpinner.setAttribute('class', 'spinner-border text-muted');
+        controlSpinner.style.display = 'none';
+        controlSpinner.style.float = 'left';
+        controlUI.appendChild(controlSpinner);
+
+	controlSearch.addEventListener("keyup", function(event){
+          if(event.keyCode === 13){
+            event.preventDefault();
+            controlButton.click();
+          }
+        });
+
+        controlButton.addEventListener('click', function() {
+            currSearch = controlSearch.value;
+            refreshYelp();
+        });
+      }
+	    
       //starts the map
       function initAutocomplete() {
          
