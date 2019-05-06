@@ -539,7 +539,8 @@
         var locationInfo = {
           cLatitude: map.getCenter().lat(),
           cLongitude: map.getCenter().lng(),
-          range: maxDistance 
+          range: maxDistance,
+	  term: currSearch
         };
 
         //calls the backend event "newView" with the new location data
