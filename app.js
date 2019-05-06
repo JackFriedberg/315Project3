@@ -68,6 +68,7 @@ async function getNewYelp(info) {
     cLongitude = info.cLongitude;
     cLatitude = info.cLatitude;
     range = info.range;
+    term = info.term;
     
     var lim = 50;    
     var off = 0;
@@ -77,7 +78,7 @@ async function getNewYelp(info) {
     while(off < totalBus){
         //creates the query
         const searchRequest = {
-            term: 'Restaurants',
+            term: term,
             latitude: cLatitude,
             longitude: cLongitude, 
             radius: range,
