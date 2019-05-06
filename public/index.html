@@ -152,6 +152,8 @@
 
         controlButton.addEventListener('click', function() {
             currSearch = controlSearch.value;
+	    if(currSearch == '')
+            	currSearch = 'Food';
             refreshYelp();
         });
       }
