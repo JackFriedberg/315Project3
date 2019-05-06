@@ -95,11 +95,12 @@
       var infoWindow;
       //object that makes clusters
       var markerCluster;
-
-
       //caches the bounds
       var queriedBounds;
-
+      //current search term
+      var currSearch = 'Restaurants';
+      //element of spinner for search
+      var controlSpinner;
 
       //starts the map
       function initAutocomplete() {
