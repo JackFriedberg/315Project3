@@ -461,6 +461,12 @@
         markerCluster = new MarkerClusterer(map, markerArray, {maxZoom: 17, imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
       
         queriedBounds = new google.maps.LatLngBounds(map.getBounds());
+	      
+	//creating and adding search bar
+        var searchControlDiv = document.createElement('div');
+        var searchControl = new SearchControl(searchControlDiv, map);
+        searchControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchControlDiv);
       }
 	
 
